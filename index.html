@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GharGuru – Trusted CBSE Home Tutors (Class 1–12)</title>
+<meta name="description" content="Book verified CBSE home tutors for Class 1 to 12. Maths, Science, English, Hindi, SST, Physics, Chemistry, Biology, Accounts and more – at your home.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1d1b2f; --muted:#5d5a72; --bg:#fffaf3; --card:#ffffff;
+    --brand:#e8590c; --brand-dark:#c2410c; --brand-soft:#fff0e3;
+    --teal:#0f766e; --teal-soft:#e6f6f4; --line:#ece6dc; --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  h1,h2,h3{font-family:"Baloo 2",sans-serif;line-height:1.15}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+  .btn{display:inline-block;padding:13px 24px;border-radius:999px;font-weight:600;border:2px solid transparent;cursor:pointer;font-size:15px;transition:.2s}
+  .btn-primary{background:var(--brand);color:#fff}
+  .btn-primary:hover{background:var(--brand-dark)}
+  .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+  .btn-ghost:hover{background:var(--ink);color:#fff}
+  .tag{display:inline-block;background:var(--teal-soft);color:var(--teal);padding:5px 12px;border-radius:999px;font-size:13px;font-weight:600}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,250,243,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:"Baloo 2";font-size:28px;font-weight:800;color:var(--brand)}
+  .logo span{color:var(--teal)}
+  .nav ul{display:flex;gap:26px;list-style:none;font-weight:500;font-size:15px}
+  .nav ul a:hover{color:var(--brand)}
+  .menu-btn{display:none;background:none;border:0;font-size:26px;cursor:pointer}
+
+  /* Hero */
+  .hero{padding:70px 0 60px}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(36px,5vw,58px);margin:16px 0}
+  .hero h1 em{font-style:normal;color:var(--brand)}
+  .hero p.lead{font-size:18px;color:var(--muted);max-width:540px}
+  .hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .trust{display:flex;gap:22px;margin-top:30px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+  .trust b{display:block;font-size:22px;color:var(--ink);font-family:"Baloo 2"}
+  .hero-card{background:var(--card);border-radius:24px;padding:28px;box-shadow:0 20px 50px -20px rgba(232,89,12,.35);border:1px solid var(--line)}
+  .hero-card h3{font-size:22px;margin-bottom:14px}
+  .quick label{font-size:13px;font-weight:600;color:var(--muted);display:block;margin:10px 0 4px}
+
+  /* Sections */
+  section{padding:70px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 44px}
+  .sec-head h2{font-size:clamp(28px,4vw,40px);margin:10px 0}
+  .sec-head p{color:var(--muted)}
+  .alt{background:#fff}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .step .num{width:42px;height:42px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-family:"Baloo 2";font-weight:800;font-size:20px;margin-bottom:14px}
+  .step h3{font-size:19px;margin-bottom:6px}
+  .step p{font-size:14.5px;color:var(--muted)}
+
+  .classes{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .cls{border-radius:var(--radius);padding:24px;border:1px solid var(--line);background:var(--bg)}
+  .cls h3{font-size:21px}
+  .cls small{color:var(--muted);font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .chip{background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-size:13px}
+
+  .teachers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .t-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:relative}
+  .t-top{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+  .avatar{width:56px;height:56px;border-radius:50%;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center;font-family:"Baloo 2";font-weight:800;font-size:22px;flex-shrink:0}
+  .t-card h3{font-size:19px}
+  .t-card .meta{font-size:13.5px;color:var(--muted)}
+  .t-card ul{list-style:none;font-size:14px;margin:10px 0 16px}
+  .t-card li{padding:3px 0}
+  .demo{position:absolute;top:12px;right:12px;font-size:11px;background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:999px;font-weight:600}
+  .t-card .btn{width:100%;text-align:center;padding:10px}
+
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .why div{padding:22px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line)}
+  .why h3{font-size:18px;margin-bottom:4px}
+  .why p{font-size:14.5px;color:var(--muted)}
+  .why .ic{font-size:28px;margin-bottom:8px}
+
+  /* Forms */
+  .form-box{max-width:820px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px;box-shadow:0 10px 40px -25px rgba(0,0,0,.25)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .full{grid-column:1/-1}
+  label{font-size:14px;font-weight:600;display:block;margin-bottom:6px}
+  label .req{color:var(--brand)}
+  input,select,textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:15px;background:#fff;color:var(--ink)}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brand)}
+  textarea{min-height:90px;resize:vertical}
+  .checks{display:flex;flex-wrap:wrap;gap:8px}
+  .checks label{font-weight:500;display:flex;align-items:center;gap:6px;border:1.5px solid var(--line);padding:7px 12px;border-radius:999px;cursor:pointer;margin:0;font-size:14px}
+  .checks input{width:auto;accent-color:var(--brand)}
+  .checks label:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+  .form-note{font-size:13px;color:var(--muted);margin-top:14px}
+  .form-actions{margin-top:22px}
+  .form-actions .btn{width:100%;font-size:16px;padding:15px}
+  .success{display:none;background:var(--teal-soft);color:var(--teal);padding:16px;border-radius:12px;margin-top:16px;font-weight:600;text-align:center}
+  .teacher-sec{background:linear-gradient(180deg,#fff 0%,var(--teal-soft) 100%)}
+  .teacher-sec .btn-primary{background:var(--teal)}
+  .teacher-sec .btn-primary:hover{background:#0b5d57}
+  .teacher-sec input:focus,.teacher-sec select:focus,.teacher-sec textarea:focus{border-color:var(--teal)}
+  .teacher-sec .checks label:has(input:checked){border-color:var(--teal);background:var(--teal-soft)}
+
+  /* FAQ */
+  .faq{max-width:780px;margin:0 auto}
+  details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:12px}
+  summary{font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+  summary::after{content:"+";font-size:22px;color:var(--brand);line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{margin-top:10px;color:var(--muted);font-size:15px}
+
+  footer{background:var(--ink);color:#d6d3e3;padding:50px 0 24px;font-size:14.5px}
+  .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+  footer .logo{color:#fff}
+  footer h4{color:#fff;margin-bottom:10px;font-family:"Baloo 2";font-size:18px}
+  footer a:hover{color:#fff}
+  footer li{list-style:none;padding:3px 0}
+  .copy{border-top:1px solid #34314a;margin-top:30px;padding-top:18px;text-align:center;font-size:13px}
+
+  .wa-float{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:60}
+  .wa-float svg{width:30px;height:30px;fill:#fff}
+
+  @media (max-width:900px){
+    .hero-grid,.foot{grid-template-columns:1fr}
+    .steps,.classes{grid-template-columns:1fr 1fr}
+    .teachers,.why{grid-template-columns:1fr 1fr}
+    .nav ul{display:none;position:absolute;top:68px;left:0;right:0;background:var(--bg);flex-direction:column;padding:16px 20px;gap:14px;border-bottom:1px solid var(--line)}
+    .nav ul.open{display:flex}
+    .menu-btn{display:block}
+  }
+  @media (max-width:600px){
+    .steps,.classes,.teachers,.why,.grid2{grid-template-columns:1fr}
+    .form-box{padding:22px}
+    section{padding:54px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo" id="logo">Ghar<span>Guru</span></a>
+    <ul id="menu">
+      <li><a href="#how">How it Works</a></li>
+      <li><a href="#classes">Classes</a></li>
+      <li><a href="#teachers">Our Tutors</a></li>
+      <li><a href="#book">Book a Tutor</a></li>
+      <li><a href="#join">Become a Tutor</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">✔ Sirf CBSE Board · Class 1 to 12</span>
+      <h1>Ghar baithe <em>best CBSE tutor</em>, aapke bachche ke liye</h1>
+      <p class="lead">Verified, experienced home tutors for every subject. Batayiye class aur subject – hum 24 ghante mein sahi teacher match karke <b>free demo class</b> arrange karenge.</p>
+      <div class="cta">
+        <a href="#book" class="btn btn-primary">Book Free Demo</a>
+        <a href="#join" class="btn btn-ghost">I'm a Teacher – Join Us</a>
+      </div>
+      <div class="trust">
+        <div><b>Class 1–12</b>All CBSE subjects</div>
+        <div><b>Verified</b>ID & interview checked</div>
+        <div><b>Free Demo</b>Pay only if satisfied</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Quick Tutor Search</h3>
+      <form class="quick" onsubmit="quickGo(event)">
+        <label>Class</label>
+        <select id="qClass" required></select>
+        <label>Subject</label>
+        <select id="qSubject"><option value="">All Subjects</option></select>
+        <label>Your Area / Locality</label>
+        <input id="qArea" placeholder="e.g. Sector 21, Rohini">
+        <div style="margin-top:18px"><button class="btn btn-primary" style="width:100%">Find My Tutor →</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Simple Process</span>
+      <h2>Tutor book karna bahut aasaan hai</h2>
+      <p>4 steps mein aapke ghar par qualified CBSE teacher.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Request Bhejein</h3><p>Class, subject, area aur timing ke saath booking form bharein.</p></div>
+      <div class="step"><div class="num">2</div><h3>Tutor Match</h3><p>Hum aapke area aur zaroorat ke hisaab se best verified tutor choose karte hain.</p></div>
+      <div class="step"><div class="num">3</div><h3>Free Demo Class</h3><p>Teacher ghar aakar demo class lete hain. Pasand aaye tabhi aage badhein.</p></div>
+      <div class="step"><div class="num">4</div><h3>Regular Classes</h3><p>Monthly progress update ke saath regular tuition shuru.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section id="classes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">CBSE Curriculum</span>
+      <h2>Class 1 se 12 tak, har subject</h2>
+      <p>NCERT-based teaching, board exam preparation aur regular tests.</p>
+    </div>
+    <div class="classes" id="classGroups"></div>
+  </div>
+</section>
+
+<!-- TEACHERS -->
+<section id="teachers" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Our Tutors</span>
+      <h2>Hamare verified teachers</h2>
+      <p>Har teacher ka ID verification aur subject interview hota hai.</p>
+    </div>
+    <div class="teachers" id="teacherList"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Why Parents Choose Us</span>
+      <h2>Kyun chunein GharGuru?</h2>
+    </div>
+    <div class="why">
+      <div><div class="ic">🛡️</div><h3>Verified Teachers</h3><p>Aadhaar/ID check, qualification check aur personal interview ke baad hi teacher assign hota hai.</p></div>
+      <div><div class="ic">📘</div><h3>Only CBSE Focus</h3><p>NCERT syllabus, sample papers aur board pattern par poora focus.</p></div>
+      <div><div class="ic">🎯</div><h3>Free Demo</h3><p>Pehli class free – teacher pasand na aaye to bina charge replacement.</p></div>
+      <div><div class="ic">📊</div><h3>Progress Reports</h3><p>Monthly test aur parents ko regular feedback.</p></div>
+      <div><div class="ic">👩‍🏫</div><h3>Female Tutors Available</h3><p>Aapki preference ke hisaab se male ya female tutor.</p></div>
+      <div><div class="ic">💬</div><h3>Direct Support</h3><p>Kisi bhi problem ke liye WhatsApp/call par turant help.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="book" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">For Parents</span>
+      <h2>Book a Home Tutor</h2>
+      <p>Form bhariye – hamari team 24 ghante ke andar aapse contact karegi.</p>
+    </div>
+    <form class="form-box" id="bookForm" data-type="Booking">
+      <div class="grid2">
+        <div><label>Parent's Name <span class="req">*</span></label><input name="Parent Name" required></div>
+        <div><label>Mobile Number <span class="req">*</span></label><input name="Mobile" type="tel" pattern="[0-9+ ]{10,14}" required placeholder="10-digit mobile"></div>
+        <div><label>Student's Name</label><input name="Student Name"></div>
+        <div><label>Class <span class="req">*</span></label><select name="Class" id="bClass" required></select></div>
+        <div class="full"><label>Subjects Needed <span class="req">*</span></label><div class="checks" id="bSubjects"></div></div>
+        <div><label>City <span class="req">*</span></label><input name="City" required></div>
+        <div><label>Area / Locality <span class="req">*</span></label><input name="Area" id="bArea" required></div>
+        <div class="full"><label>Full Address</label><input name="Address" placeholder="House no., street, landmark"></div>
+        <div><label>Preferred Tutor</label><select name="Preferred Tutor" id="bTutor"><option>Any suitable tutor</option></select></div>
+        <div><label>Tutor Gender Preference</label><select name="Gender Preference"><option>No preference</option><option>Female</option><option>Male</option></select></div>
+        <div><label>Preferred Timing</label><select name="Timing"><option>Evening (4–8 PM)</option><option>Afternoon (12–4 PM)</option><option>Morning (7–11 AM)</option><option>Weekends only</option></select></div>
+        <div><label>Classes per Week</label><select name="Days per week"><option>5–6 days</option><option>3–4 days</option><option>2 days</option></select></div>
+        <div class="full"><label>Monthly Budget (₹)</label><select name="Budget"><option>Discuss on call</option><option>Under ₹2,000</option><option>₹2,000 – ₹4,000</option><option>₹4,000 – ₹7,000</option><option>₹7,000 – ₹10,000</option><option>Above ₹10,000</option></select></div>
+        <div class="full"><label>Anything else?</label><textarea name="Message" placeholder="Bachche ki weak subjects, board exam target, etc."></textarea></div>
+      </div>
+      <div class="form-actions"><button class="btn btn-primary" type="submit">Book Free Demo Class</button></div>
+      <p class="form-note">Submit karne par aapki details hamari team ko jayengi aur WhatsApp par confirmation khulega.</p>
+      <div class="success" id="bookOk">✅ Thank you! Aapki request mil gayi hai. Hum jaldi call karenge.</div>
+    </form>
+  </div>
+</section>
+
+<!-- TEACHER REGISTRATION -->
+<section id="join" class="teacher-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">For Teachers</span>
+      <h2>Become a GharGuru Tutor</h2>
+      <p>Apne area mein home tuitions paayein. Registration free hai. Shortlist hone par hum interview aur ID verification ke liye call karenge.</p>
+    </div>
+    <form class="form-box" id="teacherForm" data-type="Teacher">
+      <div class="grid2">
+        <div><label>Full Name <span class="req">*</span></label><input name="Name" required></div>
+        <div><label>Mobile Number <span class="req">*</span></label><input name="Mobile" type="tel" pattern="[0-9+ ]{10,14}" required></div>
+        <div><label>Email</label><input name="Email" type="email"></div>
+        <div><label>Gender <span class="req">*</span></label><select name="Gender" required><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option></select></div>
+        <div><label>Highest Qualification <span class="req">*</span></label><select name="Qualification" required><option value="">Select</option><option>Graduate (B.A./B.Sc./B.Com)</option><option>B.Tech / B.E.</option><option>B.Ed</option><option>Post Graduate (M.A./M.Sc./M.Com)</option><option>M.Ed / Ph.D</option><option>Pursuing Graduation</option><option>Other</option></select></div>
+        <div><label>Teaching Experience <span class="req">*</span></label><select name="Experience" required><option value="">Select</option><option>Fresher</option><option>1–2 years</option><option>3–5 years</option><option>5–10 years</option><option>10+ years</option></select></div>
+        <div class="full"><label>Classes You Can Teach <span class="req">*</span></label>
+          <div class="checks" id="tClasses">
+            <label><input type="checkbox" name="Classes" value="1–5">Class 1–5</label>
+            <label><input type="checkbox" name="Classes" value="6–8">Class 6–8</label>
+            <label><input type="checkbox" name="Classes" value="9–10">Class 9–10</label>
+            <label><input type="checkbox" name="Classes" value="11–12">Class 11–12</label>
+          </div>
+        </div>
+        <div class="full"><label>Subjects You Teach <span class="req">*</span></label><div class="checks" id="tSubjects"></div></div>
+        <div><label>City <span class="req">*</span></label><input name="City" required></div>
+        <div><label>Areas You Can Travel To <span class="req">*</span></label><input name="Areas" required placeholder="e.g. Rohini, Pitampura"></div>
+        <div><label>Available Timing</label><select name="Availability"><option>Evening (4–8 PM)</option><option>Afternoon (12–4 PM)</option><option>Morning (7–11 AM)</option><option>Flexible</option></select></div>
+        <div><label>Expected Fee per Month (₹)</label><input name="Expected Fee" type="number" min="0" placeholder="per subject / per student"></div>
+        <div class="full"><label>About You</label><textarea name="About" placeholder="Teaching style, achievements, school/coaching experience..."></textarea></div>
+        <div class="full"><label style="display:flex;gap:8px;font-weight:500"><input type="checkbox" required style="width:auto;accent-color:var(--teal)"> Main confirm karta/karti hoon ki di gayi jaankari sahi hai aur main ID verification ke liye taiyaar hoon.</label></div>
+      </div>
+      <div class="form-actions"><button class="btn btn-primary" type="submit">Register as Tutor</button></div>
+      <p class="form-note">ID proof aur certificates verification ke time maange jayenge – abhi upload ki zaroorat nahi.</p>
+      <div class="success" id="teacherOk">✅ Registration ho gaya! Hum aapko interview ke liye call karenge.</div>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">FAQ</span><h2>Aksar pooche jaane wale sawaal</h2></div>
+    <div class="faq">
+      <details><summary>Kya aap sirf CBSE board ke liye tutor dete hain?</summary><p>Haan, abhi hum sirf CBSE Class 1 se 12 ke liye home tutors provide karte hain, NCERT syllabus ke according.</p></details>
+      <details><summary>Demo class ka koi charge hai?</summary><p>Nahi, pehli demo class bilkul free hai. Teacher pasand aaye tabhi regular classes shuru hoti hain.</p></details>
+      <details><summary>Fees kitni hoti hai?</summary><p>Fees class, subject, classes per week aur aapke area par depend karti hai. Booking ke baad hamari team exact fees batayegi.</p></details>
+      <details><summary>Agar teacher pasand na aaye to?</summary><p>Hum bina extra charge ke doosra teacher arrange kar denge.</p></details>
+      <details><summary>Teachers ka verification kaise hota hai?</summary><p>Har teacher ka ID proof, qualification documents aur subject knowledge interview check kiya jaata hai.</p></details>
+      <details><summary>Main teacher hoon – registration ka koi charge hai?</summary><p>Registration free hai. Shortlist hone par hum aapko interview ke liye contact karenge.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="logo" id="footLogo">Ghar<span style="color:#5eead4">Guru</span></div>
+        <p style="margin-top:10px;max-width:360px">Trusted CBSE home tutors for Class 1–12. Har bachche ke liye sahi teacher, ghar par.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul><li><a href="#book">Book a Tutor</a></li><li><a href="#join">Become a Tutor</a></li><li><a href="#teachers">Our Tutors</a></li><li><a href="#faq">FAQ</a></li></ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul><li id="fPhone"></li><li id="fEmail"></li><li id="fCity"></li></ul>
+      </div>
+    </div>
+    <div class="copy">© <span id="yr"></span> <span class="siteName"></span>. All rights reserved.</div>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3C9 3 3.3 8.7 3.3 15.7c0 2.5.7 4.9 2 7L3 29l6.5-2.1c2 1.1 4.2 1.7 6.5 1.7 7 0 12.7-5.7 12.7-12.7S23 3 16 3zm0 23.2c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.9 1.3 1.3-3.8-.3-.4c-1.2-1.8-1.9-4-1.9-6.2C4.9 9.6 9.9 4.6 16 4.6s11.1 5 11.1 11.1S22.1 26.2 16 26.2zm6.1-8.3c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.5c-.3-.7-.5-.6-.8-.6h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.4 3.7 5.9 5.2 2.9 1.1 3.5.9 4.1.8.6-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<script>
+/* =========================================================
+   ✏️ SIRF YAHAN EDIT KAREIN – apni details daalein
+   ========================================================= */
+const SITE = {
+  name: "GharGuru",
+  whatsapp: "919999999999",        // country code ke saath, bina + ke (91XXXXXXXXXX)
+  phone: "+91 99999 99999",
+  email: "hello@gharguru.in",
+  city: "Your City",
+  // Google Sheet mein data save karne ke liye Apps Script URL (README dekhein). Khaali chhodenge to sirf WhatsApp par jayega.
+  sheetUrl: ""
+};
+
+/* Apne verified teachers yahan add karein. demo:true wale par "Demo profile" badge dikhega – real teachers mein demo hata dein. */
+const TEACHERS = [
+  { name:"Priya Sharma", qual:"M.Sc. Mathematics, B.Ed", exp:"7 yrs", classes:"Class 6–12", subjects:"Maths, Physics", area:"North Zone", demo:true },
+  { name:"Rahul Verma", qual:"M.A. English", exp:"5 yrs", classes:"Class 1–10", subjects:"English, Hindi, SST", area:"South Zone", demo:true },
+  { name:"Neha Gupta", qual:"M.Com, CA Inter", exp:"4 yrs", classes:"Class 11–12", subjects:"Accountancy, Economics, BST", area:"East Zone", demo:true }
+];
+
+const GROUPS = [
+  { title:"Class 1–5", sub:"Primary", subjects:["All Subjects","Maths","English","Hindi","EVS"] },
+  { title:"Class 6–8", sub:"Middle", subjects:["Maths","Science","English","Hindi","Social Science","Sanskrit"] },
+  { title:"Class 9–10", sub:"Secondary (Board)", subjects:["Maths","Science","English","Hindi","Social Science","Computer"] },
+  { title:"Class 11–12", sub:"Senior Secondary", subjects:["Physics","Chemistry","Maths","Biology","Accountancy","Economics","Business Studies","English","Computer Science"] }
+];
+/* ========================================================= */
+
+const groupFor = c => c<=5?0:c<=8?1:c<=10?2:3;
+const allSubjects = [...new Set(GROUPS.flatMap(g=>g.subjects))];
+
+// Branding
+document.title = `${SITE.name} – Trusted CBSE Home Tutors (Class 1–12)`;
+document.querySelectorAll(".siteName").forEach(e=>e.textContent=SITE.name);
+document.getElementById("yr").textContent = new Date().getFullYear();
+document.getElementById("fPhone").innerHTML = `📞 <a href="tel:${SITE.phone.replace(/\s/g,'')}">${SITE.phone}</a>`;
+document.getElementById("fEmail").innerHTML = `✉️ <a href="mailto:${SITE.email}">${SITE.email}</a>`;
+document.getElementById("fCity").textContent = `📍 ${SITE.city}`;
+document.getElementById("waFloat").href = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hi, mujhe home tutor ke baare mein jaankari chahiye.")}`;
+
+// Class groups
+document.getElementById("classGroups").innerHTML = GROUPS.map(g=>`
+  <div class="cls"><h3>${g.title}</h3><small>${g.sub}</small>
+  <div class="chips">${g.subjects.map(s=>`<span class="chip">${s}</span>`).join("")}</div></div>`).join("");
+
+// Class dropdowns
+const classOpts = `<option value="">Select class</option>` + Array.from({length:12},(_,i)=>`<option value="${i+1}">Class ${i+1}</option>`).join("");
+["qClass","bClass"].forEach(id=>document.getElementById(id).innerHTML = classOpts);
+
+function fillSubjects(selectEl, boxEl, cls){
+  const subs = cls ? GROUPS[groupFor(+cls)].subjects : allSubjects;
+  if(selectEl) selectEl.innerHTML = `<option value="">All Subjects</option>` + subs.map(s=>`<option>${s}</option>`).join("");
+  if(boxEl) boxEl.innerHTML = subs.map(s=>`<label><input type="checkbox" name="Subjects" value="${s}">${s}</label>`).join("");
+}
+fillSubjects(document.getElementById("qSubject"), null, "");
+fillSubjects(null, document.getElementById("bSubjects"), "");
+fillSubjects(null, document.getElementById("tSubjects"), "");
+document.getElementById("qClass").onchange = e => fillSubjects(document.getElementById("qSubject"), null, e.target.value);
+document.getElementById("bClass").onchange = e => fillSubjects(null, document.getElementById("bSubjects"), e.target.value);
+
+// Teachers
+document.getElementById("teacherList").innerHTML = TEACHERS.map(t=>`
+  <div class="t-card">${t.demo?'<span class="demo">Demo profile</span>':''}
+    <div class="t-top"><div class="avatar">${t.name.split(" ").map(w=>w[0]).join("").slice(0,2)}</div>
+      <div><h3>${t.name}</h3><div class="meta">${t.qual}</div></div></div>
+    <ul><li>🎓 <b>${t.classes}</b> · ${t.exp} experience</li><li>📚 ${t.subjects}</li><li>📍 ${t.area}</li></ul>
+    <a href="#book" class="btn btn-ghost" onclick="pickTutor('${t.name}')">Book ${t.name.split(" ")[0]}</a>
+  </div>`).join("");
+document.getElementById("bTutor").innerHTML += TEACHERS.map(t=>`<option>${t.name}</option>`).join("");
+function pickTutor(n){ document.getElementById("bTutor").value = n; }
+
+// Quick search -> prefill booking form
+function quickGo(e){
+  e.preventDefault();
+  const c = document.getElementById("qClass").value, s = document.getElementById("qSubject").value;
+  document.getElementById("bClass").value = c;
+  fillSubjects(null, document.getElementById("bSubjects"), c);
+  if(s){ const box=[...document.querySelectorAll('#bSubjects input')].find(i=>i.value===s); if(box) box.checked=true; }
+  document.getElementById("bArea").value = document.getElementById("qArea").value;
+  location.hash = "#book";
+}
+
+// Form submit -> Google Sheet (optional) + WhatsApp
+function handleForm(formId, okId, groupName){
+  const form = document.getElementById(formId);
+  form.addEventListener("submit", e=>{
+    e.preventDefault();
+    const boxes = form.querySelectorAll(`input[name="${groupName}"]`);
+    if(boxes.length && ![...boxes].some(b=>b.checked)){ alert("Kam se kam ek subject select karein."); return; }
+    if(formId==="teacherForm" && ![...form.querySelectorAll('input[name="Classes"]')].some(b=>b.checked)){ alert("Kam se kam ek class group select karein."); return; }
+
+    const fd = new FormData(form), data = {};
+    for(const [k,v] of fd.entries()){ if(!v) continue; data[k] = data[k] ? data[k]+", "+v : v; }
+    if(data.Class) data.Class = "Class " + data.Class;
+    const type = form.dataset.type;
+
+    if(SITE.sheetUrl){
+      fetch(SITE.sheetUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({type,...data})}).catch(()=>{});
+    }
+    const title = type==="Booking" ? "🏠 *New Tutor Booking*" : "👩‍🏫 *New Teacher Registration*";
+    const msg = title + "\n\n" + Object.entries(data).map(([k,v])=>`*${k}:* ${v}`).join("\n");
+    window.open(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+
+    document.getElementById(okId).style.display = "block";
+    form.reset();
+  });
+}
+handleForm("bookForm","bookOk","Subjects");
+handleForm("teacherForm","teacherOk","Subjects");
+
+// close mobile menu on click
+document.querySelectorAll("#menu a").forEach(a=>a.onclick=()=>document.getElementById("menu").classList.remove("open"));
+</script>
+</body>
+</html>
