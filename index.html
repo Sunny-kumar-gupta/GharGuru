@@ -279,7 +279,7 @@
         <div class="full"><label>Anything else?</label><textarea name="Message" placeholder="Bachche ki weak subjects, board exam target, etc."></textarea></div>
       </div>
       <div class="form-actions"><button class="btn btn-primary" type="submit">Book Free Demo Class</button></div>
-      <p class="form-note">Submit karne par aapki details hamari team ko jayengi aur WhatsApp par confirmation khulega.</p>
+      <p class="form-note">Submit karne par aapki details aur current location (permission dene par) hamari team ko jayengi aur WhatsApp par confirmation khulega.</p>
       <div class="success" id="bookOk">✅ Thank you! Aapki request mil gayi hai. Hum jaldi call karenge.</div>
     </form>
   </div>
@@ -318,7 +318,7 @@
         <div class="full"><label style="display:flex;gap:8px;font-weight:500"><input type="checkbox" required style="width:auto;accent-color:var(--teal)"> Main confirm karta/karti hoon ki di gayi jaankari sahi hai aur main ID verification ke liye taiyaar hoon.</label></div>
       </div>
       <div class="form-actions"><button class="btn btn-primary" type="submit">Register as Tutor</button></div>
-      <p class="form-note">ID proof aur certificates verification ke time maange jayenge – abhi upload ki zaroorat nahi.</p>
+      <p class="form-note">ID proof aur certificates verification ke time maange jayenge – abhi upload ki zaroorat nahi. Submit karte waqt current location ke liye permission maangi jayegi.</p>
       <div class="success" id="teacherOk">✅ Registration ho gaya! Hum aapko interview ke liye call karenge.</div>
     </form>
   </div>
@@ -446,29 +446,75 @@ function quickGo(e){
   location.hash = "#book";
 }
 
+// Current GPS location -> Google Sheet ke liye readable fields
+function getCurrentLocation(){
+  return new Promise(resolve=>{
+    if(!navigator.geolocation){
+      resolve({"Location Status":"Location is browser mein supported nahi hai"});
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      position=>{
+        const latitude = position.coords.latitude.toFixed(6);
+        const longitude = position.coords.longitude.toFixed(6);
+        resolve({
+          "Location Status":"Captured",
+          "Latitude":latitude,
+          "Longitude":longitude,
+          "Location Accuracy":`${Math.round(position.coords.accuracy)} metres`,
+          "Google Maps Location":`https://www.google.com/maps?q=${latitude},${longitude}`
+        });
+      },
+      error=>{
+        const messages = {
+          1:"User ne location permission deny ki",
+          2:"Location available nahi hai",
+          3:"Location request timeout ho gayi"
+        };
+        resolve({"Location Status":messages[error.code] || "Location capture nahi ho saki"});
+      },
+      {enableHighAccuracy:true,timeout:12000,maximumAge:0}
+    );
+  });
+}
+
 // Form submit -> Google Sheet (optional) + WhatsApp
 function handleForm(formId, okId, groupName){
   const form = document.getElementById(formId);
-  form.addEventListener("submit", e=>{
+  form.addEventListener("submit", async e=>{
     e.preventDefault();
     const boxes = form.querySelectorAll(`input[name="${groupName}"]`);
     if(boxes.length && ![...boxes].some(b=>b.checked)){ alert("Kam se kam ek subject select karein."); return; }
     if(formId==="teacherForm" && ![...form.querySelectorAll('input[name="Classes"]')].some(b=>b.checked)){ alert("Kam se kam ek class group select karein."); return; }
 
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = "Location le rahe hain...";
+    // User click ke isi event mein tab kholne se async GPS ke baad popup block nahi hota.
+    const whatsappWindow = window.open("", "_blank");
+
     const fd = new FormData(form), data = {};
     for(const [k,v] of fd.entries()){ if(!v) continue; data[k] = data[k] ? data[k]+", "+v : v; }
     if(data.Class) data.Class = "Class " + data.Class;
     const type = form.dataset.type;
+    const locationData = await getCurrentLocation();
+    Object.assign(data, locationData);
 
     if(SITE.sheetUrl){
       fetch(SITE.sheetUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({type,...data})}).catch(()=>{});
     }
     const title = type==="Booking" ? "🏠 *New Tutor Booking*" : "👩‍🏫 *New Teacher Registration*";
     const msg = title + "\n\n" + Object.entries(data).map(([k,v])=>`*${k}:* ${v}`).join("\n");
-    window.open(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+    const whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(msg)}`;
+    if(whatsappWindow) whatsappWindow.location.href = whatsappUrl;
+    else window.location.href = whatsappUrl;
 
     document.getElementById(okId).style.display = "block";
     form.reset();
+    submitButton.disabled = false;
+    submitButton.textContent = originalButtonText;
   });
 }
 handleForm("bookForm","bookOk","Subjects");
